@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/ETU001778-W31-P15A-Henintsoa/COMPTABILITE_HJA_BACKEND#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
   }
 }
