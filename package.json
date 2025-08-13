@@ -1,0 +1,25 @@
+{
+  "name": "comptabilite",
+  "version": "1.0.0",
+  "description": "logiciel de comptabilite HJA (HERINJANAHARY Jean Aime)",
+  "main": "index.js",
+  "scripts": {
+    "test": "compta"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ETU001778-W31-P15A-Henintsoa/COMPTABILITE_HJA_BACKEND.git"
+  },
+  "keywords": [
+    "hja"
+  ],
+  "author": "h.lovahenintsoa & Santatra Mamindrakotroka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ETU001778-W31-P15A-Henintsoa/COMPTABILITE_HJA_BACKEND/issues"
+  },
+  "homepage": "https://github.com/ETU001778-W31-P15A-Henintsoa/COMPTABILITE_HJA_BACKEND#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

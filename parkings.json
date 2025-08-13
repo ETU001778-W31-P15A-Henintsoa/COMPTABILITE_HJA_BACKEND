@@ -1,0 +1,18 @@
+{
+    "parkings": [
+        {
+            "id": 1,
+            "name": "Parking A",
+            "location": "Location A",
+            "capacity": 100,
+            "available_spots": 50
+        },
+        {
+            "id": 2,
+            "name": "Parking B",
+            "location": "Location B",
+            "capacity": 200,
+            "available_spots": 75
+        }
+    ]
+}
