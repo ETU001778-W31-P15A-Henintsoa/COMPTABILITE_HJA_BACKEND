@@ -13,6 +13,7 @@ const app = express();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // const parkings = allparkings.parkings;
 // app.get('/parkings', (req,res) => {res.status(200).json(parkings)});
 
@@ -22,6 +23,8 @@ const app = express();
 
 app.listen(8080, () => {  console.log("Serveur à l'écoute sur le port 8080")});
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
