@@ -10,6 +10,7 @@ const app = express();
 // app.post('/parkings', (req,res) => {res.status(200).json(allparkings)})
 // app.listen(8080, () => {console.log("Serveur à l'écoute")})
 
+<<<<<<< Updated upstream
 // const parkings = allparkings.parkings;
 // app.get('/parkings', (req,res) => {res.status(200).json(parkings)});
 
@@ -18,3 +19,8 @@ const app = express();
 // res.status(200).json(parking)});
 
 app.listen(8080, () => {  console.log("Serveur à l'écoute sur le port 8080")});
+=======
+app.listen(process.env.PORT, () => {
+    console.log(`🚀 Serveur démarré sur http://localhost:${process.env.PORT}`);
+});
+>>>>>>> Stashed changes
