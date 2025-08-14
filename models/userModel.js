@@ -1,13 +1,5 @@
-const { Pool } = require('pg');
 require('dotenv').config();
-
-const pool = new Pool({
-    host: process.env.PGHOST,
-    user: process.env.PGUSER,
-    password: process.env.PGPASSWORD,
-    database: process.env.PGDATABASE,
-    port: process.env.PGPORT,
-});
+const pool = require('../database'); 
 
 // Vérifier si un utilisateur existe déjà
 const findUser = async (identifiant, mail) => {
