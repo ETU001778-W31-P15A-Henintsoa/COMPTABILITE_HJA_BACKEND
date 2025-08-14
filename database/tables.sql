@@ -32,6 +32,7 @@ CREATE TABLE Utilisateur(
     idtu VARCHAR(6) REFERENCES TypeUtilisateur(idtu),
     etat INT DEFAULT 1
 );
+ALTER TABLE Utilisateur ADD COLUMN telephone VARCHAR(15);
 
 -- RAPPORT
 CREATE TABLE Rapport(
