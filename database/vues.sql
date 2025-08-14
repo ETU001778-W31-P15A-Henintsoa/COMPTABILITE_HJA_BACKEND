@@ -1,5 +1,4 @@
 -- VIEWS
-
 -- VUE UTILISATEUR + TYPE UTILISATEUR
 CREATE VIEW V_Utilisateurs AS
     SELECT u.idu, 
@@ -28,16 +27,16 @@ CREATE VIEW V_Saisie AS
         s.cr,
         s.npiece,
         s.etat AS etatsaisie,
-        CONCAT(u.nom || ' ' || u.prenom), as operateur
+        CONCAT(u.nom || ' ' || u.prenom) AS operateur
     FROM Saisie s
     JOIN Utilisateur u ON u.idu =  s.idu
     JOIN Rapport r ON r.idr = s.idr
     JOIN DateSaisie ds ON ds.idds =  s.idds
     JOIN PlanComptable pc ON pc.idpc =  s.idpc
-    JOIN Mois m ON m.n = ds.mois
+    JOIN Mois m ON m.n = ds.mois;
 
 -- Vue Total Debits Credits
 CREATE VIEW V_TotalDB AS
     SELECT SUM(dr) AS totaldebit,
-        SUM(cd) AS totalcredit
-    FROM V_Saisie
+        SUM(cr) AS totalcredit
+    FROM V_Saisie;
