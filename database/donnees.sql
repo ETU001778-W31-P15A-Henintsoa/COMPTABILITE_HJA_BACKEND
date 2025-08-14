@@ -11,4 +11,8 @@ INSERT INTO Mois(n, frs) VALUES
     (9, 'Septembre'),
     (10, 'Octobre'),
     (11, 'Novembre'),
-    (12, 'Decembre'),
+    (12, 'Decembre');
+
+-- Type utilisateur
+INSERT INTO TypeUtilisateur(libelle) VALUES
+    ('Consultant'),('Administrateur');

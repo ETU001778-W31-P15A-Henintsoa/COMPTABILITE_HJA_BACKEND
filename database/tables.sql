@@ -29,7 +29,7 @@ CREATE TABLE Utilisateur(
     prenom VARCHAR(30) NOT NULL,
     mail VARCHAR(30) NOT NULL UNIQUE,
     mdp VARCHAR(10) NOT NULL,
-    idtu INT REFERENCES TypeUtilisateur(idtu),
+    idtu VARCHAR(6) REFERENCES TypeUtilisateur(idtu),
     etat INT DEFAULT 1
 );
 
@@ -46,7 +46,7 @@ CREATE TABLE DateSaisie(
     idds VARCHAR(50) DEFAULT CONCAT('DS' || NEXTVAL('seqdatesaisie')) PRIMARY KEY,
     mois INT NOT NULL,
     annee INT NOT NULL,
-    dateoperation CURRENT_TIMESTAMP NOT NULL
+    dateoperation TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 -- PLAN COMPTABLE
@@ -70,10 +70,10 @@ CREATE TABLE Saisie (
     idds VARCHAR(50) REFERENCES DateSaisie(idds),
     idpc VARCHAR(50) REFERENCES PlanComptable(idpc),
     idu VARCHAR(10) REFERENCES Utilisateur(idu),
-    libelle VARHCAR(50) NOT NULL,
+    libelle VARCHAR(50) NOT NULL,
     ref VARCHAR(15) UNIQUE,
-    dr DOUBLE DEFAULT 0,
-    cr DOUBLE DEFAULT 0,
+    dr DOUBLE PRECISION  DEFAULT 0,
+    cr DOUBLE PRECISION  DEFAULT 0,
     npiece varchar(10) NOT NULL,
     etat INT DEFAULT 1    
 );
