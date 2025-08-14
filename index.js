@@ -11,6 +11,7 @@ const app = express();
 // app.listen(8080, () => {console.log("Serveur à l'écoute")})
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // const parkings = allparkings.parkings;
 // app.get('/parkings', (req,res) => {res.status(200).json(parkings)});
 
@@ -20,6 +21,8 @@ const app = express();
 
 app.listen(8080, () => {  console.log("Serveur à l'écoute sur le port 8080")});
 =======
+=======
+>>>>>>> Stashed changes
 app.listen(process.env.PORT, () => {
     console.log(`🚀 Serveur démarré sur http://localhost:${process.env.PORT}`);
 });
