@@ -1,5 +1,4 @@
 -- VIEWS
-
 -- VUE UTILISATEUR + TYPE UTILISATEUR
 CREATE VIEW V_Utilisateurs AS
     SELECT u.idu, 
