@@ -1,8 +1,11 @@
 const express = require('express');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const allparkings = require('./parkings.json');
 
 =======
+=======
+>>>>>>> Stashed changes
 const userRoutes = require('./routes/userRoutes');
 require('dotenv').config();
 >>>>>>> Stashed changes
