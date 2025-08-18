@@ -4,6 +4,6 @@ const userController = require('../controllers/userController');
 
 // Route pour ajouter un utilisateur
 // router.post('/', userController.addUser);
-router.post('/utilisateurs', userController.findUser);
+router.post('/connexion', userController.loginUser);
 
 module.exports = router;
