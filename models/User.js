@@ -21,7 +21,7 @@ class User {
         }
 
         try {
-               const request = `SELECT * FROM Utilisateur WHERE identifiant = '${this.identifiant}' and mdp='${this.mdp}' and etat=1`;
+            const request = `SELECT * FROM v_utilisateurs WHERE identifiant = '${this.identifiant}' and mdp='${this.mdp}' and etat=1`;
             console.log(request);
             const result = await generalisation.getObject(connect, request);
             return result;

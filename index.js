@@ -1,12 +1,17 @@
 const express = require('express');
-const userRoutes = require('./routes/userRoutes');
 const cors = require('cors');
+const helmet = require('helmet');
+const dotenv = require('dotenv');
 
-require('dotenv').config();
+// Routes
+const userRoutes = require('./routes/userRoutes');
+
+dotenv.config();
 
 const app = express();
 
 app.use(cors());
+app.use(helmet());
 app.use(express.json());
 
 // Routes

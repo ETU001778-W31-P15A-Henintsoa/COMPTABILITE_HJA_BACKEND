@@ -6,6 +6,9 @@ CREATE VIEW V_Utilisateurs AS
        u.prenom, 
        u.mail, 
        u.mdp, 
+       u.telephone, 
+       u.identifiant, 
+       u.etat,
        tu.libelle AS typeutilisateur
     FROM Utilisateur u
     JOIN TypeUtilisateur tu ON u.idtu = tu.idtu;
@@ -27,9 +30,10 @@ CREATE VIEW V_Saisie AS
         s.cr,
         s.npiece,
         s.etat AS etatsaisie,
-        CONCAT(u.nom || ' ' || u.prenom) AS operateur
+        CONCAT(u.nom || ' ' || u.prenom) AS operateur,
+        u.idu AS idutilisateur
     FROM Saisie s
-    JOIN Utilisateur u ON u.idu =  s.idu
+    JOIN V_Utilisateurs u ON u.idu =  s.idu
     JOIN Rapport r ON r.idr = s.idr
     JOIN DateSaisie ds ON ds.idds =  s.idds
     JOIN PlanComptable pc ON pc.idpc =  s.idpc
