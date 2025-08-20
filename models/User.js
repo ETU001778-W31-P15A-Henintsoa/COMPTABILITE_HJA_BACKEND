@@ -10,7 +10,7 @@ class User {
         this.mail = mail;
         this.telephone = telephone;
         this.idtu = idtu;
-        this.etat = this.etat;
+        this.etat = etat;
     }
 
     // Trouver un Utilisateur
