@@ -11,7 +11,7 @@ async function loginUser(connect, identifiant, mdp) {
     }
 
     try {
-        const user = new User(identifiant, mdp, null, null, null, null, null);
+        const user = new User(identifiant, mdp, null, null, null, null, null,null);
         const result = await user.findUser(connect);
         if (!result) return 0;
 
