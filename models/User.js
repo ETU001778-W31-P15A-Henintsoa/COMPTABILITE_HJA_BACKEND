@@ -69,7 +69,7 @@ class User {
         }
 
         try{
-            const request = `INSERT INTO utilisateur values(default,'${this.identifiant}','${this.nom}','${this.prenom}','${this.mail}','${this.telephone}','${this.idtu}',etat=${this.etat})`;
+            const request = `INSERT INTO utilisateur values(default,'${this.identifiant}','${this.nom}','${this.prenom}','${this.mail}','${this.telephone}','${this.idtu}')`;
             console.log(request);
             const result = await generalisation.updatingObject(connect,request);
             return result;
