@@ -2,15 +2,7 @@ const connexion = require('../utils/Connexion');
 const generalisation = require('../utils/Generalisation');
 
 class User {
-    constructor(identifiant, mdp, nom, prenom, mail, telephone, idtu, etat) {
-        this.identifiant = identifiant;
-        this.mdp = mdp;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.mail = mail;
-        this.telephone = telephone;
-        this.idtu = idtu;
-        this.etat = etat;
+    constructor() {
     }
 
     // Trouver un Utilisateur

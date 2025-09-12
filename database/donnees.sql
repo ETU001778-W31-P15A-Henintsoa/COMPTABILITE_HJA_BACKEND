@@ -13,6 +13,31 @@ INSERT INTO Mois(n, frs) VALUES
     (11, 'Novembre'),
     (12, 'Decembre');
 
--- Type utilisateur
+-- Types utilisateur
 INSERT INTO TypeUtilisateur(libelle) VALUES
-    ('Consultant'),('Administrateur');
+    ('Consultant'),
+    ('Administrateur');
+
+-- Utilisateurs
+INSERT INTO Utilisateur(identifiant, nom, prenom, email, mdp, telephone) VALUES
+    ('HJA', 'HERINJANAHARY', 'Jean Aimé', 'hja@gmail.com', 'password', '0321234567');
+
+-- Type de saisie
+INSERT INTO TypeSaisie(libelle) VALUES
+    ('Mensuel');
+
+-- Rapports
+INSERT INTO Rapport(libelle, notation) VALUES
+    ('Cheque emis', '1'),
+    ('Versement caissier', '3'),
+    ('Rapport financier', '4');
+
+-- Plan Comptable
+INSERT INTO PlanComptable(numero, libelle) VALUES
+    ('512', 'Banque'),
+    ('531', 'Caisse');
+
+-- Regle Comptabilite
+INSERT INTO regleComptabilite (dr, cr) VALUES
+    ('PC1', 'PC2'),
+    ('PC2', 'PC1');
