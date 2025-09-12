@@ -1,12 +1,12 @@
 const connexion = require('../utils/Connexion');
 const generalisation = require('../utils/Generalisation');
 
-class User {
+class InputTypes {
     constructor() {
     }
 
-    // Trouver un Utilisateur
-    async findUser(connect) {
+    // Tout les types de saisie disponibles
+    async findInputTypes(connect) {
         let newconnexion = false;
         if (!connect) {
             connect = await connexion.pool.connect();
@@ -14,7 +14,7 @@ class User {
         }
 
         try {
-            const request = `SELECT * FROM v_utilisateurs WHERE identifiant = '${this.identifiant}' and mdp='${this.mdp}' and etat=1`;
+            const request = `SELECT * FROM TypeRapport WHERE and etat=1`;
             console.log(request);
             const result = await generalisation.getObject(connect, request);
             return result;
@@ -29,4 +29,4 @@ class User {
     }
 };
 
-module.exports = User;
+module.exports = InputTypes;

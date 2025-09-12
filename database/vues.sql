@@ -18,6 +18,8 @@ CREATE VIEW V_Saisie AS
     SELECT r.idr,
         r.libelle AS libellerapport,
         r.notation,
+        ts.idts,
+        ts.libelle AS typesaisie,
         ds.mois,
         m.frs,
         ds.annee,
@@ -35,12 +37,7 @@ CREATE VIEW V_Saisie AS
     FROM Saisie s
     JOIN V_Utilisateurs u ON u.idu =  s.idu
     JOIN Rapport r ON r.idr = s.idr
+    JOIN TypeSaisie ts ON ts.idts = s.idts
     JOIN DateSaisie ds ON ds.idds =  s.idds
     JOIN PlanComptable pc ON pc.idpc =  s.idpc
     JOIN Mois m ON m.n = ds.mois;
-
--- Vue Total Debits Credits
-CREATE VIEW V_TotalDB AS
-    SELECT SUM(dr) AS totaldebit,
-        SUM(cr) AS totalcredit
-    FROM V_Saisie;
