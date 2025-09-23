@@ -1,1 +1,22 @@
-[ {"mois":"5","annee":"2018","idRapport":"R2"}, {"compte":"PC2","ref":"REF00366","amount":"24.3456", "operation":"1"}]
+[
+    {
+        libelle: REdpijewhp,
+        compte: PC1, reference: REFUUSDFDNV, montant: 21354, 
+        operation: 1
+    }, 
+        {libelle: Recharche, compte: PC2,
+reference: 1354657, montant: 21354, operation: 0}]
+
+ var saisie = {
+                        'mois': widget.month,
+                        'annee': widget.year,
+                        'idr' : widget.idr,
+                        'npiece': widget.npiece,
+                        'lignes': entries.map((e) => {
+                          'libelle' : e['libelle'],
+                          'compte' : e['compte'],
+                          'ref': e['reference'],
+                          'montant' : e['montant'],
+                          'operation' : e['operation']
+                        }).toList()
+                      };

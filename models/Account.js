@@ -1,5 +1,5 @@
-const connexion = require('../utils/Connexion');
-const generalisation = require('../utils/Generalisation');
+import { pool } from '../utils/Connexion.js';
+import { getObject } from '../utils/Generalisation.js';
 
 class Account {
     constructor() {
@@ -9,14 +9,14 @@ class Account {
     async findAccounts(connect) {
         let newconnexion = false;
         if (!connect) {
-            connect = await connexion.pool.connect();
+            connect = await pool.connect();
             newconnexion = true;
         }
 
         try {
             const request = `SELECT * FROM plancomptable WHERE etat=1`;
             console.log(request);
-            const result = await generalisation.getObject(connect, request);
+            const result = await getObject(connect, request);
             return result;
         } catch (error) {
             console.error(error.stack);
@@ -29,4 +29,4 @@ class Account {
     }
 };
 
-module.exports = Account;
+export default Account;

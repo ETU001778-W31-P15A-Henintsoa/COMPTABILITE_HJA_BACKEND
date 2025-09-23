@@ -1,17 +1,17 @@
 // services/userService.js
-const connexion = require('../utils/Connexion');
-const User = require('../models/User');
+import { pool } from '../utils/Connexion.js';
+import User from '../models/User.js';
 
 // Fonction de login de l'Utilisateur
 async function loginUser(connect, identifiant, mdp) {
     let newconnexion = false;
     if (!connect) {
-        connect = await connexion.pool.connect();
+        connect = await pool.connect();
         newconnexion = true;
     }
 
     try {
-        const user = new User(identifiant, mdp, null, null, null, null, null,null);
+        const user = new User(identifiant, mdp);
         const result = await user.findUser(connect);
         if (!result) return 0;
 
@@ -25,6 +25,6 @@ async function loginUser(connect, identifiant, mdp) {
     }
 }
 
-module.exports = {
+export {
   loginUser
 };

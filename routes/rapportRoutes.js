@@ -1,10 +1,9 @@
-const express = require('express');
-const { body } = require('express-validator');
+import { Router } from 'express';
+import { findRapports } from '../controllers/rapportController.js';
 
-const router = express.Router();
-const rapportController = require('../controllers/rapportController');
+const router = Router();
 
 // Routes
-router.post('/', rapportController.findRapports);
+router.post('/', findRapports);
 
-module.exports = router;
+export default router;

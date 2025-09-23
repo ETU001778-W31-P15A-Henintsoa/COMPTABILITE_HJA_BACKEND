@@ -19,25 +19,19 @@ INSERT INTO TypeUtilisateur(libelle) VALUES
     ('Administrateur');
 
 -- Utilisateurs
-INSERT INTO Utilisateur(identifiant, nom, prenom, email, mdp, telephone) VALUES
-    ('HJA', 'HERINJANAHARY', 'Jean Aimé', 'hja@gmail.com', 'password', '0321234567');
+INSERT INTO Utilisateur(identifiant, nom, prenom, mail, mdp, telephone, idtu) VALUES
+    ('HJA', 'HERINJANAHARY', 'Jean Aimé', 'hja@gmail.com', 'password', '0321234567', 'TU1');
 
--- Type de saisie
-INSERT INTO TypeSaisie(libelle) VALUES
-    ('Mensuel');
-
--- Rapports
+-- Rapports 
 INSERT INTO Rapport(libelle, notation) VALUES
-    ('Cheque emis', '1'),
-    ('Versement caissier', '3'),
-    ('Rapport financier', '4');
+    ('Sortie Caisse', '1'),
+    ('Sortie Banque', '2'),
+    ('Entree Caisse', '3'),
+    ('Resume Financier', '4'),
+    ('Operations Diverses', '5'),
+    ('Entree Banque', '6');
 
 -- Plan Comptable
 INSERT INTO PlanComptable(numero, libelle) VALUES
     ('512', 'Banque'),
     ('531', 'Caisse');
-
--- Regle Comptabilite
-INSERT INTO regleComptabilite (dr, cr) VALUES
-    ('PC1', 'PC2'),
-    ('PC2', 'PC1');

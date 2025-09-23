@@ -1,12 +1,11 @@
-// services/userService.js
-const connexion = require('../utils/Connexion');
-const Account = require('../models/Account');
+import { pool } from '../utils/Connexion.js';
+import Account from '../models/Account.js';
 
 // Fonction retournant le rapport et le type de saisie
 async function findAccounts(connect) {
     let newconnexion = false;
     if (!connect) {
-        connect = await connexion.pool.connect();
+        connect = await pool.connect();
         newconnexion = true;
     }
 
@@ -23,6 +22,6 @@ async function findAccounts(connect) {
     }
 }
 
-module.exports = {
+export {
   findAccounts
 };

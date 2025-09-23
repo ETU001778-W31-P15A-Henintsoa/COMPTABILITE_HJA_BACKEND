@@ -10,9 +10,9 @@ CREATE SEQUENCE seqtypeu START 1;
 CREATE SEQUENCE sequtilisateur START 1;
 CREATE SEQUENCE seqrapport START 1;
 CREATE SEQUENCE seqplancomptable START 1;
-CREATE SEQUENCE seqdatesaisie START 1;
-CREATE SEQUENCE seqsaisie START 1;
 CREATE SEQUENCE seqtypesaisie START 1;
+CREATE SEQUENCE seqsaisieoperation START 1;
+CREATE SEQUENCE seqlignesaisie START 1;
 
 -- TYPE UTILISATEUR
 CREATE TABLE TypeUtilisateur(
@@ -42,14 +42,6 @@ CREATE TABLE Rapport(
     etat INT DEFAULT 1
 );
 
--- DATESAISIE
-CREATE TABLE DateSaisie(
-    idds VARCHAR(50) DEFAULT CONCAT('DS' || NEXTVAL('seqdatesaisie')) PRIMARY KEY,
-    mois INT NOT NULL,
-    annee INT NOT NULL,
-    dateoperation TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
-);
-
 -- PLAN COMPTABLE
 CREATE TABLE PlanComptable(
     idpc VARCHAR(50) DEFAULT CONCAT('PC' || NEXTVAL('seqplancomptable')) PRIMARY KEY,
@@ -58,41 +50,32 @@ CREATE TABLE PlanComptable(
     etat INT DEFAULT 1
 );
 
--- REGLE COMPTABILITE
-CREATE TABLE RegleComptabilite(
-    dr VARCHAR(50) REFERENCES PlanComptable(idpc),
-    cr VARCHAR(50) REFERENCES PlanComptable(idpc),
-    pourcentage DECIMAL DEFAULT 100,
-    form_calcul TEXT
-);
-
 -- MOIS
 CREATE TABLE MOIS(
     n INT NOT NULL,
     frs VARCHAR(10) NOT NULL 
 );
 
--- TYPE SAISIE
-CREATE TABLE TypeSaisie (
-    idts VARCHAR(6) DEFAULT CONCAT('TS' || NEXTVAL('seqtypesaisie')) PRIMARY KEY,
-    libelle VARCHAR(50) NOT NULL,
-    etat INT DEFAULT 1
-);  
+-- DATESAISIE
+CREATE TABLE SaisieOperation(
+    idso VARCHAR(50) DEFAULT CONCAT('SO' || NEXTVAL('seqsaisieoperation')) PRIMARY KEY,
+    mois INT NOT NULL,
+    annee INT NOT NULL,
+    npiece VARCHAR(15) UNIQUE, 
+    idr VARCHAR(10) REFERENCES Rapport(idr)
+);
 
 -- SAISIE
-CREATE TABLE Saisie(
-    ids VARCHAR(100) DEFAULT CONCAT('S' || NEXTVAL('seqsaisie')) PRIMARY KEY,
-    idr VARCHAR(10) REFERENCES Rapport(idr),
-    idds VARCHAR(50) REFERENCES DateSaisie(idds),
+CREATE TABLE LigneSaisie(
+    idls VARCHAR(100) DEFAULT CONCAT('LS' || NEXTVAL('seqlignesaisie')) PRIMARY KEY,
+    idso VARCHAR(50) REFERENCES SaisieOperation(idso),
     idpc VARCHAR(50) REFERENCES PlanComptable(idpc),
     idu VARCHAR(10) REFERENCES Utilisateur(idu),
     libelle VARCHAR(50) NOT NULL,
     ref VARCHAR(15) UNIQUE,
-    npiece VARCHAR(15) NOT NULL,
     dr DOUBLE PRECISION  DEFAULT 0,
     cr DOUBLE PRECISION  DEFAULT 0,
     etat INT DEFAULT 1    
 );
-ALTER TABLE Saisie ADD COLUMN idts VARCHAR(6) REFERENCES TypeSaisie(idts);
 
 

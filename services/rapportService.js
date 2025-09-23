@@ -1,13 +1,12 @@
 // services/userService.js
-const connexion = require('../utils/Connexion');
-
-const Rapport = require('../models/Rapport');
+import { pool } from '../utils/Connexion.js';
+import Rapport from '../models/Rapport.js';
 
 // Fonction retournant le rapport et le type de saisie
 async function findRapports(connect) {
     let newconnexion = false;
     if (!connect) {
-        connect = await connexion.pool.connect();
+        connect = await pool.connect();
         newconnexion = true;
     }
 
@@ -24,6 +23,6 @@ async function findRapports(connect) {
     }
 }
 
-module.exports = {
+export {
   findRapports
 };

@@ -1,8 +1,8 @@
-const rapportService = require('../services/rapportService');
+import { findRapports as _findRapports } from '../services/rapportService.js';
 
 async function findRapports(req, res) {
     try {
-        const data = await rapportService.findRapports(null);
+        const data = await _findRapports(null);
         if (!data) return res.status(404).json(null);
         else {
             res.set('Content-Type', 'application/json');
@@ -14,6 +14,6 @@ async function findRapports(req, res) {
     }
 };
 
-module.exports = {
+export {
     findRapports
 };

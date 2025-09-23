@@ -1,11 +1,13 @@
-const { Pool } = require('pg');
-require('dotenv').config();
+import Pool from 'pg';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 async function getObject(connexion, request) {
     let newconnexion = false;
 
     if (!connexion) {
-        connexion = await pool.connect();
+        connexion = await Pool.connect();
         newconnexion = true;
     }
 
@@ -22,11 +24,11 @@ async function getObject(connexion, request) {
     }
 }
 
-async function updatingObject(connexion, request) {
+async function updating(connexion, request) {
     let newconnexion = false;
 
     if (!connexion) {
-        connexion = await pool.connect();
+        connexion = await Pool.connect();
         newconnexion = true;
     }
 
@@ -42,7 +44,7 @@ async function updatingObject(connexion, request) {
     }
 }
 
-module.exports = {
+export {
     getObject,
-    updatingObject
+    updating
 };

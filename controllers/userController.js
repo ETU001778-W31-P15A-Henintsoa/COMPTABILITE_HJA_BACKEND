@@ -1,13 +1,12 @@
-const userService = require('../services/userService');
-const User = require('../models/User');
+import { loginUser as _loginUser } from '../services/userService.js';
 
-async function loginUser (req, res) {
+export const loginUser = async (req, res) => {
     const userIdentifiant = req.body.identifiant;
     const usermdp = req.body.mdp;
     
     try {
-        const users = await userService.loginUser(null, userIdentifiant, usermdp);
-        if (users.length === 0) return res.status(404).json(null);
+        const users = await _loginUser(null, userIdentifiant, usermdp);
+        if (users.length == 0) return res.status(404).json(null);
         else {
             res.set('Content-Type', 'application/json');
             return res.status(200).json(users);
@@ -18,7 +17,7 @@ async function loginUser (req, res) {
     }
 };
 
-async function insertUser(req,res) {
+export const insertUser = (req,res) => {
     const userIdentifiant = req.body.identifiant;
     const userName = req.body.nom;
     const userPrenom = req.body.prenom;
@@ -30,7 +29,7 @@ async function insertUser(req,res) {
     try {
         const user = new User(userIdentifiant,userName,userPrenom,userMail,userTelephone,userMdp,userType,null);
 
-        const existingUser = await user.checkUserExists(null);
+        const existingUser = user.checkUserExists(null);
 
         if (existingUser && existingUser.length > 0) {
             return res.status(400).json({ 
@@ -38,7 +37,7 @@ async function insertUser(req,res) {
                 message: "Utilisateur existe déjà avec cet identifiant ou email !" 
             });
         }
-        const result = await user.insertUser(null);
+        const result = user.insertUser(null);
         return res.status(201).json({
             success: true,
             message: "Utilisateur inséré avec succès",
@@ -50,9 +49,9 @@ async function insertUser(req,res) {
     }
 }
 
-async function getAllUsers(req,res) {
+export const getAllUsers = (req, res) => {
     try{
-        const users = await User.getAllUsers(null);
+        const users = User.getAllUsers(null);
         return users;
     }catch(err){
         console.error(err.stack);
@@ -60,7 +59,7 @@ async function getAllUsers(req,res) {
     }
 }
 
-async function updateUser(req , res){
+export const updateUser = (req, res) => {
     const userIdentifiant = req.body.identifiant;
     const updateName = req.body.nom;
     const updatePrenom = req.body.prenom;
@@ -72,7 +71,7 @@ async function updateUser(req , res){
 
     try {
         const user = new User(userIdentifiant,updateName,updatePrenom,updateMail,updateTelephone,updateMdp,updateType,updateEtat);
-        const result = await user.updateUser(null);
+        const result = user.updateUser(null);
         return res.status(201).json({
             success: true,
             message: "Utilisateur mofifie avec succès",
@@ -84,9 +83,3 @@ async function updateUser(req , res){
     }
 }
 
-module.exports = {
-    loginUser,
-    insertUser,
-    getAllUsers,
-    updateUser
-};

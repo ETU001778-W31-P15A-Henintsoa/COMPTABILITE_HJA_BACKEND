@@ -1,19 +1,36 @@
-const inputService = require('../services/inputService');
+import { getDocumentsNumber as _getDocumentsNumber, insertInput as _insertInput } from '../services/inputService.js';
 
-// async function rapportInputTypes(req, res) {
-//     try {
-//         const data = await inputService.findRapports(null);
-//         if (!data) return res.status(404).json(null);
-//         else {
-//             res.set('Content-Type', 'application/json');
-//             return res.status(200).json(data);
-//         }    
-//     } catch (err) {
-//         console.error(err.stack);
-//         return res.status(500).json(null);
-//     }
-// };
+async function getDocumentsNumber(req, res) {
+    try {
+        const { prefix } = req.body.prefix;
+        const data = await _getDocumentsNumber(null, prefix);
+        if (!data) return res.status(404).json(null);
+        else {
+            res.set('Content-Type', 'application/json');
+            return res.status(200).json(data);
+        }    
+    } catch (err) {
+        console.error(err.stack);
+        return res.status(500).json(null);
+    }
+};
 
-module.exports = {
-    // rapportInputTypes
+async function insertInput(req, res) {
+    try {
+        const inputs = req.body.data;
+        const data = await _insertInput(null, inputs);
+        if (!data) return res.status(404).json(null);
+        else {
+            res.set('Content-Type', 'application/json');
+            return res.status(200).json(true);
+        }    
+    } catch (err) {
+        console.error(err.stack);
+        return res.status(500).json(false);
+    }
+};
+
+export {
+    getDocumentsNumber,
+    insertInput
 };

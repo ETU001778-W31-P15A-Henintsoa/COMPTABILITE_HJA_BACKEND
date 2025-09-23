@@ -1,15 +1,15 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const dotenv = require('dotenv');
+import express, { json } from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import { config } from 'dotenv';
 
 // Routes
-const userRoutes = require('./routes/userRoutes');
-const inputRoutes = require('./routes/inputRoutes');
-const rapportRoutes = require('./routes/rapportRoutes');
-const accountRoutes = require('./routes/accountRoutes');
+import userRoutes from './routes/userRoutes.js';
+import inputRoutes from './routes/inputRoutes.js';
+import rapportRoutes from './routes/rapportRoutes.js';
+import accountRoutes from './routes/accountRoutes.js';
 
-dotenv.config();
+config();
 
 const app = express();
 app.use(cors({
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 });
 
 app.use(helmet());
-app.use(express.json());
+app.use(json());
 
 // Routes
 app.use('/utilisateurs', userRoutes);

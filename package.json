@@ -1,6 +1,7 @@
 {
   "name": "comptabilite",
   "version": "1.0.0",
+  "type": "module",
   "description": "logiciel de comptabilite HJA (HERINJANAHARY Jean Aime)",
   "main": "index.js",
   "scripts": {

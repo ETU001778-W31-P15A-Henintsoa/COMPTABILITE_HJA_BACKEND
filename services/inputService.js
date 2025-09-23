@@ -1,30 +1,50 @@
 // services/userService.js
-const connexion = require('../utils/Connexion');
+import { pool } from '../utils/Connexion.js';
+import Input from '../models/Input.js';
 
-// Fonction retournant le rapport et le type de saisie
-// async function rapportInputTypes(connect) {
-//     let newconnexion = false;
-//     if (!connect) {
-//         connect = await connexion.pool.connect();
-//         newconnexion = true;
-//     }
+// Fonction retournant lele nombre de saisie avec le prefix donné
+async function getDocumentsNumber(connect, prefix) {
+    let newconnexion = false;
+    if (!connect) {
+        connect = await pool.connect();
+        newconnexion = true;
+    }
 
-//     try {
-//         const rapport = new Rapport();
-//         const rapporttypes = new InputTypes();
-//         const rapportresult = await rapport.findRapports(connect);
-//         const rapporttypesresult = await rapporttypes.findInputTypes(connect);
-//         const data = { rapport: rapportresult, rapporttypes: rapporttypesresult };
-//         return data;
-//     } catch (error) {
-//         console.error(error.stack);
-//     } finally {
-//         if (newconnexion) {
-//             connect.release();
-//         }
-//     }
-// }
+    try {
+        const input = new Input();
+        const inputresult = await input.getDocumentsNumber(connect, prefix);
+        return inputresult;
+    } catch (error) {
+        console.error(error.stack);
+    }finally{
+        if(newconnexion){
+            connect.release();
+        }
+    }
+}
 
-module.exports = {
-//   rapportInputTypes
+// Insertion Saisie
+async function insertInput(connect, data) {
+    let newconnexion = false;
+    if (!connect) {
+        connect = await pool.connect();
+        newconnexion = true;
+    }
+
+    try {
+        const input = new Input();
+        const inputresult = await input.insertInput(connect, data);
+        return inputresult;
+    } catch (error) {
+        console.error(error.stack);
+    }finally{
+        if(newconnexion){
+            connect.release();
+        }
+    }
+}
+
+export {
+   getDocumentsNumber,
+   insertInput
 };

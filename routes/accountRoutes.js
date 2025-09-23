@@ -1,10 +1,9 @@
-const express = require('express');
-const { body } = require('express-validator');
+import { Router } from 'express';
+import { findAccounts } from '../controllers/accountController.js';
 
-const router = express.Router();
-const accountController = require('../controllers/accountController');
+const router = Router();
 
 // Routes
-router.post('/', accountController.findAccounts);
+router.post('/', findAccounts);
 
-module.exports = router;
+export default router;

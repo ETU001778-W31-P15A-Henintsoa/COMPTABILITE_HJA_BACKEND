@@ -1,10 +1,10 @@
-const express = require('express');
-const { body } = require('express-validator');
+import { Router } from 'express';
+import { getDocumentsNumber, insertInput } from '../controllers/inputController.js';
 
-const router = express.Router();
-const inputController = require('../controllers/inputController');
+const router = Router();
 
 // Routes
-// router.post('/rapportstypesaisie', inputController.rapportInputTypes);
+router.post('/nombre-pieces', getDocumentsNumber);
+router.post('/insertion-saisie', insertInput);
 
-module.exports = router;
+export default router;

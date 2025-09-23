@@ -1,8 +1,8 @@
-const accountService = require('../services/accountService');
+import { findAccounts as _findAccounts } from '../services/accountService.js';
 
 async function findAccounts(req, res) {
     try {
-        const data = await accountService.findAccounts(null);
+        const data = await _findAccounts(null);
         if (!data) return res.status(404).json(null);
         else {
             res.set('Content-Type', 'application/json');
@@ -14,6 +14,6 @@ async function findAccounts(req, res) {
     }
 };
 
-module.exports = {
+export {
     findAccounts
 };
