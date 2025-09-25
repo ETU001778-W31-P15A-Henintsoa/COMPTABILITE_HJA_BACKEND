@@ -17,13 +17,13 @@ async function getDocumentsNumber(req, res) {
 
 async function insertInput(req, res) {
     try {
-        const inputs = req.body.data;
-        const data = await _insertInput(null, inputs);
-        if (!data) return res.status(404).json(null);
-        else {
-            res.set('Content-Type', 'application/json');
-            return res.status(200).json(true);
-        }    
+        const { data } = req.body;
+        const r = await _insertInput(null, data);
+        // if (!data) return res.status(404).json(null);
+        // else {
+        //     res.set('Content-Type', 'application/json');
+        //     return res.status(200).json(true);
+        // }    
     } catch (err) {
         console.error(err.stack);
         return res.status(500).json(false);

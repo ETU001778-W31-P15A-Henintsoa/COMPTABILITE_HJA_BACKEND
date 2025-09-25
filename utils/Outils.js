@@ -1,7 +1,4 @@
 import { readFileSync } from 'fs';
-import { join } from 'path';
-
-const sessionFilePath = join(__dirname, '../config/session.json');
 
 function ongoingSession() {
     try {
@@ -18,6 +15,24 @@ function ongoingSession() {
     }
 }
 
+function sanitizeToJson(badJsonString) {
+  // Étape 1 : Ajouter des guillemets autour des clés
+  let fixed = badJsonString.replace(/([{,]\s*)(\w+)\s*:/g, '$1"$2":');
+
+  // Étape 2 : Ajouter des guillemets autour des valeurs alphanumériques non numériques (comme PC1, REF1234)
+  fixed = fixed.replace(/:\s*([A-Za-z_][\w-]*)/g, ':"$1"');
+
+  // Maintenant on peut parser la chaîne
+  try {
+    return JSON.parse(fixed);
+  } catch (e) {
+    console.error("Erreur de parsing :", e.message);
+    return null;
+  }
+}
+
+
 export {
-    ongoingSession
+    ongoingSession,
+    sanitizeToJson
 };

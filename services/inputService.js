@@ -23,7 +23,7 @@ async function getDocumentsNumber(connect, prefix) {
     }
 }
 
-// Insertion Saisie
+// Fonction d'insertion de saisie
 async function insertInput(connect, data) {
     let newconnexion = false;
     if (!connect) {

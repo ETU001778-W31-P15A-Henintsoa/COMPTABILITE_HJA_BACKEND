@@ -19,7 +19,7 @@ CREATE TABLE TypeUtilisateur(
     idtu VARCHAR(6) DEFAULT CONCAT('TU' || NEXTVAL ('seqtypeu')) PRIMARY KEY,
     libelle VARCHAR(50) NOT NULL,
     etat INT DEFAULT 1
-); 
+);
 
 -- UTILISATEUR
 CREATE TABLE Utilisateur(
