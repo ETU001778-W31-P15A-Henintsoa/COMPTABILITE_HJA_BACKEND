@@ -45,26 +45,28 @@ class Input {
         try {
             request = `begin`;
 
-            request = `insert into SaisieOperation (idso, mois, annee, npiece, idr) values('${data['mois']}', '${data['annee']}', '${data['npiece']}', '${data['idr']}')`;
+            request = `insert into SaisieOperation (mois, annee, npiece, idr) values('${data['mois']}', '${data['annee']}', '${data['npiece']}', '${data['idr']}')`;
+            await updating(connect, request);
 
-            request = `SELECT * FROM SaisieOperation ORDER BY CAST(SUBSTRING(idso FROM 3) AS INTEGER) DESC LIMIT 1;`
-            var idso = await getObject(connect, request); 
-            console.log(`${idso} : ${request}`);
+            request = `SELECT idso FROM SaisieOperation ORDER BY CAST(SUBSTRING(idso FROM 3) AS INTEGER) DESC LIMIT 1;`
+            var result = await getObject(connect, request); 
 
             var lignes = sanitizeToJson(data['lignes']);
+
             for (let index = 0; index < lignes.length; index++) {
                 const element = lignes[index];
                 if(element.operation.toString() == "1"){
-                    request = request + `insert into LigneSaisie(idso, idpc, idu, libelle, ref, dr, cr) values ('${idso.idso}', '${element.compte}', 'null', '${element.libelle}', '${element.ref}', '${element.montant}', 0);`;  
+                    request = request + `insert into LigneSaisie(idso, idpc, idu, libelle, ref, dr, cr) values ('${result[0].idso}', '${element.compte}', 'U2', '${element.libelle}', '${element.ref}', '${element.montant}', 0);`;  
                 }else{
-                    request = request + `insert into LigneSaisie(idso, idpc, idu, libelle, ref, dr, cr) values ('${idso.idso}', '${element.compte}', 'null', '${element.libelle}', '${element.ref}', 0, '${element.montant}'); `;
+                    request = request + `insert into LigneSaisie(idso, idpc, idu, libelle, ref, dr, cr) values ('${result[0].idso}', '${element.compte}', 'U2', '${element.libelle}', '${element.ref}', 0, '${element.montant}'); `;
                 }   
             }
-            await updating(connect, request);
-            request = 'end';
 
             await updating(connect, request);
+            request = 'end';
+            await updating(connect, request);
             return true;
+
         } catch (error) {
             request = 'rollback';
             console.error(error.stack);
